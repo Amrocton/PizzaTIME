@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Form</class>
+ <widget class="QWidget" name="Form">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>2594</width>
+    <height>1241</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Pizza_name</string>
+  </property>
+  <widget class="QLabel" name="pizzaim">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>2591</width>
+     <height>1241</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Pizza</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
