@@ -177,6 +177,7 @@ class CashierForm(QWidget):
     def __init__(self):
         super().__init__()
         uic.loadUi('casherwim.ui', self)
+        self.setWindowIcon(QIcon('pizzaicon.png'))
         self.setClientOrder()
         self.acceptbtn.clicked.connect(self.acceptOrder)
         self.declinebtn.clicked.connect(self.declineOrder)
@@ -210,7 +211,7 @@ class CashierForm(QWidget):
         self.changebtn.setText('Сохранить')
 
     def saveOrder(self):
-        self.order.setEditTriggers(QAbstractItemView.NoEditTriggers)
+        '''self.order.setEditTriggers(QAbstractItemView.NoEditTriggers)
         self.changebtn.clicked.connect(self.changeOrder)
         self.changebtn.setText('Изменить')
         if self.order.rowCount() > 0:
@@ -221,6 +222,9 @@ class CashierForm(QWidget):
                         range(self.order.rowCount())]
                 for row in lest[:-1]:
                     writer.writerow(row)
+
+        Тут происходит поломка из-за пустык строк, их быть не должно, нужно убрать'''
+        pass
 
 
 app = QApplication(sys.argv)
