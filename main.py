@@ -3,9 +3,10 @@ import csv
 import sqlite3
 from PyQt5 import uic
 from PyQt5.QtGui import QPixmap, QIcon
-from PyQt5.QtWidgets import QApplication, QMainWindow, QInputDialog, QWidget, QTableWidgetItem
+from PyQt5.QtWidgets import QApplication, QMainWindow, QInputDialog, QWidget, QTableWidgetItem, \
+    QAbstractItemView
 
-cpassword = 'tetyazina'
+cpassword = ''
 
 
 class MainWindow(QMainWindow):
@@ -155,7 +156,8 @@ class Basket(QWidget):
         with open('client.csv', 'w', encoding='utf8') as csvfile:
             writer = csv.writer(
                 csvfile, delimiter=';', quotechar='"', quoting=csv.QUOTE_MINIMAL)
-            lest = [tuple(map(str, [i, self.clientlist[i][0], self.clientlist[i][1]])) for i in self.clientlist]
+            lest = [tuple(map(str, [i, self.clientlist[i][0], self.clientlist[i][1]])) for i in
+                    self.clientlist]
             for row in lest:
                 writer.writerow(row)
 
@@ -174,14 +176,15 @@ class PizzaImage(QWidget):
 class CashierForm(QWidget):
     def __init__(self):
         super().__init__()
+        uic.loadUi('casherwim.ui', self)
         self.setClientOrder()
+        self.acceptbtn.clicked.connect(self.acceptOrder)
+        self.declinebtn.clicked.connect(self.declineOrder)
+        self.changebtn.clicked.connect(self.changeOrder)
 
     def setClientOrder(self):
         with open('client.csv', 'r', encoding='utf8') as csvfile:
             reader = csv.reader(csvfile, delimiter=';', quotechar='"')
-            title = next(reader.copy())
-            self.order.setColumnCount(len(title))
-            self.order.setHorizontalHeaderLabels(title)
             self.order.setRowCount(0)
             for i, row in enumerate(reader):
                 self.order.setRowCount(self.order.rowCount() + 1)
@@ -192,6 +195,32 @@ class CashierForm(QWidget):
     def acceptOrder(self):
         with open('client.csv', 'w', encoding='utf8') as __:
             pass
+        print('Заказ в пути!')
+        self.setClientOrder()
+
+    def declineOrder(self):
+        with open('client.csv', 'w', encoding='utf8') as __:
+            pass
+        print('Заказ отменён...')
+        self.setClientOrder()
+
+    def changeOrder(self):
+        self.order.setEditTriggers(QAbstractItemView.DoubleClicked)
+        self.changebtn.clicked.connect(self.saveOrder)
+        self.changebtn.setText('Сохранить')
+
+    def saveOrder(self):
+        self.order.setEditTriggers(QAbstractItemView.NoEditTriggers)
+        self.changebtn.clicked.connect(self.changeOrder)
+        self.changebtn.setText('Изменить')
+        if self.order.rowCount() > 0:
+            with open('client.csv', 'w', encoding='utf8') as csvfile:
+                writer = csv.writer(
+                    csvfile, delimiter=';', quotechar='"', quoting=csv.QUOTE_MINIMAL)
+                lest = [tuple(map(str, [i, self.order.item(i, 0), self.order(i, 1)])) for i in
+                        range(self.order.rowCount())]
+                for row in lest[:-1]:
+                    writer.writerow(row)
 
 
 app = QApplication(sys.argv)

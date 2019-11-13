@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Form</class>
+ <widget class="QWidget" name="Form">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>313</width>
+    <height>518</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Касса</string>
+  </property>
+  <widget class="QTableWidget" name="order">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>311</width>
+     <height>421</height>
+    </rect>
+   </property>
+   <property name="editTriggers">
+    <set>QAbstractItemView::NoEditTriggers</set>
+   </property>
+   <column>
+    <property name="text">
+     <string>Название</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>Кол-во</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>Общая цена</string>
+    </property>
+   </column>
+  </widget>
+  <widget class="QPushButton" name="acceptbtn">
+   <property name="geometry">
+    <rect>
+     <x>203</x>
+     <y>461</y>
+     <width>75</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Оплатить</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="declinebtn">
+   <property name="geometry">
+    <rect>
+     <x>41</x>
+     <y>461</y>
+     <width>75</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Отменить</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="changebtn">
+   <property name="geometry">
+    <rect>
+     <x>122</x>
+     <y>461</y>
+     <width>75</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Изменить</string>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
